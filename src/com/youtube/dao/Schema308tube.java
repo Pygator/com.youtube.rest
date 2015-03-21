@@ -14,12 +14,12 @@ import com.youtube.util.ToJSON;
  * Having all sql/database code in one package makes it easier to maintain and audit
  * but increase complexity.
  * 
- * Note: we also used the extends Oracle308tube on this java class to inherit all
- * the methods in Oracle308tube.java
+ * Note: we also used the extends Pgsql308tube on this java class to inherit all
+ * the methods in Pgsql308tube.java
  * 
  * @author 308tube
  */
-public class Schema308tube extends Oracle308tube {
+public class Schema308tube extends Pgsql308tube {
 
 	/**
 	 * This method allows you to delete a row from PC_PARTS table
@@ -320,8 +320,8 @@ public class Schema308tube extends Oracle308tube {
 		
 		try {
 			conn = oraclePcPartsConnection();
-			query = conn.prepareStatement("select to_char(sysdate,'YYYY-MM-DD HH24:MI:SS') DATETIME " +
-											"from sys.dual");
+			query = conn.prepareStatement("select current_timestamp DATETIME " +
+											"from dual");
 			
 			ResultSet rs = query.executeQuery();
 			
